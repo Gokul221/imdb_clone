@@ -7,10 +7,8 @@ function Movies({handleAddToWatchList, handleRemoveFromWatchList, watchList}) {
 
     const [movies, setMovies] = useState([])
     const [pageNumber, setPageNumber] = useState(1)
-    const baseUrl = import.meta.env.VITE_API_URL
-
-    // dynamic URL fill-up
-    const apiUrl = `${baseUrl}&page=${pageNumber}`
+    const apiKey = import.meta.env.VITE_API_KEY
+    const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${pageNumber}`
 
     // const streamingProvidersURL = `https://api.themoviedb.org/3/movie/${movieId}/watch/providers`
 
@@ -45,7 +43,7 @@ function Movies({handleAddToWatchList, handleRemoveFromWatchList, watchList}) {
                                    handleAddToWatchList={handleAddToWatchList}
                                    handleRemoveFromWatchList={handleRemoveFromWatchList}
                                    watchList={watchList}
-                                   movieObj={movieObj}df
+                                   movieObj={movieObj}
                         />
                     )
                 })}

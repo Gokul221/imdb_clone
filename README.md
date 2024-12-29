@@ -11,5 +11,6 @@ This app is a basic progressive clone version of IMDB built mainly using ReactJS
 6. Sort movies according to ratings in ascending/descending order
 7. Local storage to save watchlist data
 
-Built using Vite and deployed on Netlify -
-https://famous-fenglisu-c22ca9.netlify.app/
+Built using Vite and deployed on Netlify - 
+<br>
+https://famous-fenglisu-c22ca9.netlify.app/ (Open in new tab - Cmd + click in mac, Ctrl + click in windows)

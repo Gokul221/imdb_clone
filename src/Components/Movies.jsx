@@ -32,8 +32,8 @@ function Movies({handleAddToWatchList, handleRemoveFromWatchList, watchList}) {
 
     return (
         <>
-            <div className="p-5">
-                <div className="text-2xl font-bold text-center">Trending Movies</div>
+            <div className="mt-[10rem] mb-[4rem]">
+                <div className="text-2xl  font-bold text-center">Trending Movies</div>
             </div>
             <div className="flex flex-row flex-wrap justify-around m-5">
                 {movies.map((movieObj) => {

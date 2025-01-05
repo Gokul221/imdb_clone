@@ -39,15 +39,15 @@ function Watchlist({watchList, setWatchList, handleRemoveFromWatchList}) {
         setGenreList(['All Genres', ...temp])
     }, [watchList]);
 
-    return <>
-        <div className='flex justify-center flex-wrap m-4'>
+    return <main className='justify-items-center'>
+        <div className='flex justify-center flex-wrap p-5 mt-14'>
             {genreList.map((genre) => {
                 return <div onClick={() => handleFilter(genre)}
                             key={genre}
                             className={currGenre === genre ? 'h-[2rem] w-[100px] text-white flex items-center ' +
-                                'justify-center m-2 rounded-xl bg-blue-500/70'
+                                'justify-center m-2 rounded-xl bg-blue-500/80'
                                 : 'h-[2rem] w-[100px] text-white flex items-center justify-center m-2 rounded-xl ' +
-                                'bg-gray-500/70 hover:cursor-pointer hover:scale-110 duration-200'}>{genre}
+                                'bg-gray-600/60 hover:cursor-pointer hover:scale-110 duration-200'}>{genre}
                 </div>
             })}
 
@@ -60,12 +60,12 @@ function Watchlist({watchList, setWatchList, handleRemoveFromWatchList}) {
                    value={search}/>
         </div>
 
-        <div className='overflow-hidden rounded-lg border border-gray-300 m-8'>
+        <div className='w-[85%] rounded-lg border border-gray-300 m-10'>
             <table className='w-full text-gray-500 text-center'>
-                <thead className='border-b-4'>
+                <thead className='border-b-4 border-gray-300'>
                 <tr>
-                    <th>Poster</th>
-                    <th>Name</th>
+                    <th className='w-[25%]'>Poster</th>
+                    <th className='w-[18%]'>Name</th>
                     <th className='flex justify-center'>
                         <div onClick={sortRatingsInIncreasing}
                              className='px-2 hover:cursor-pointer hover:scale-125 duration-100'>
@@ -77,7 +77,7 @@ function Watchlist({watchList, setWatchList, handleRemoveFromWatchList}) {
                     </th>
                     <th>Popularity</th>
                     <th>Genre</th>
-                    <th></th>
+                    <th className='w-[12%]'></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -90,7 +90,7 @@ function Watchlist({watchList, setWatchList, handleRemoveFromWatchList}) {
                     return (
                         <tr key={movieObj.id} className='border-b-2'>
                             <td className='justify-items-center py-4'>
-                                <img className='h-[8rem] w-[8rem] rounded-xl bg-cover'
+                                <img className='h-[8rem] w-[8rem] rounded-xl bg-cover hover:scale-110 duration-100'
                                      src={`https://image.tmdb.org/t/p/w500/${movieObj.poster_path}`}
                                      alt={movieObj.original_title}
                                 />
@@ -99,14 +99,18 @@ function Watchlist({watchList, setWatchList, handleRemoveFromWatchList}) {
                             <td>{movieObj.vote_average.toFixed(1)}</td>
                             <td>{movieObj.popularity.toFixed(2)}</td>
                             <td>{genreIDs[movieObj.genre_ids[0]]}</td>
-                            <td onClick={() => handleRemoveFromWatchList(movieObj)} className='text-red-700/70 hover:cursor-pointer hover:scale-110 duration-100'>Remove</td>
+                            <td onClick={() => handleRemoveFromWatchList(movieObj)}
+                                className='text-white place-items-center hover:cursor-pointer px-8 hover:scale-110 duration-100'>
+                                <div title='Remove from Watchlist' className='w-[6rem] p-2 rounded-xl text-center bg-red-600/90'>Remove</div>
+
+                            </td>
                         </tr>
                     )
                 })}
                 </tbody>
             </table>
         </div>
-    </>;
+    </main>;
 }
 
 export default Watchlist;

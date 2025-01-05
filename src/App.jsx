@@ -2,6 +2,7 @@ import "./App.css";
 import Banner from "./Components/Banner";
 import Movies from "./Components/Movies";
 import Navbar from "./Components/Navbar";
+import Popular from './Components/Popular.jsx'
 import Watchlist from "./Components/Watchlist";
 import {BrowserRouter, Routes, Route} from "react-router";
 import {useEffect, useState} from "react";
@@ -38,23 +39,26 @@ function App() {
     return (
         <>
             <BrowserRouter>
-                <Navbar/>
+                <header>
+                    <Navbar/>
+                </header>
                 <Routes>
                     <Route
                         path="/"
                         element={
-                            <>
+                            <main>
                                 <Banner/>
                                 <Movies handleAddToWatchList={handleAddToWatchList}
                                         handleRemoveFromWatchList={handleRemoveFromWatchList}
                                         watchList={watchList}
                                 />
-                            </>
+                            </main>
                         }
                     />
                     <Route path="/watchlist" element={<Watchlist watchList={watchList}
                                                                  setWatchList={setWatchList}
                                                                  handleRemoveFromWatchList={handleRemoveFromWatchList}/>}/>
+                    <Route path='/popular' element={<Popular/>}/>
                 </Routes>
             </BrowserRouter>
         </>

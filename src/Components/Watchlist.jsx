@@ -1,10 +1,11 @@
-import {useEffect, useState} from "react";
-import {faArrowUp, faArrowDown} from '@fortawesome/free-solid-svg-icons'
+import {useContext, useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowUp, faArrowDown} from '@fortawesome/free-solid-svg-icons'
 import genreIDs from "../utilities/genreIDs.js";
+import {WatchListContext} from "./WatchListContext.jsx";
 
-function Watchlist({watchList, setWatchList, handleRemoveFromWatchList}) {
-
+function Watchlist() {
+    const {watchList, setWatchList, handleRemoveFromWatchList} = useContext(WatchListContext)
     const [search, setSearch] = useState('')
     const [genreList, setGenreList] = useState(['All Genres'])
     const [currGenre, setCurrGenre] = useState('All Genres')
@@ -35,31 +36,35 @@ function Watchlist({watchList, setWatchList, handleRemoveFromWatchList}) {
         let temp = watchList.map((movieObj) => {
             return genreIDs[movieObj.genre_ids[0]]
         })
-        temp = new Set(temp)
-        setGenreList(['All Genres', ...temp])
+        temp = new Set(temp)        // temp array converted into Set (unique values)
+        setGenreList(['All Genres', ...temp])   // temp again gets converted into an array (spread operator) now with unique values
     }, [watchList]);
 
     return <main className='justify-items-center'>
+
+        {/*Genre List*/}
         <div className='flex justify-center flex-wrap p-5 mt-14'>
             {genreList.map((genre) => {
                 return <div onClick={() => handleFilter(genre)}
                             key={genre}
-                            className={currGenre === genre ? 'h-[2rem] w-[100px] text-white flex items-center ' +
-                                'justify-center m-2 rounded-xl bg-blue-500/80'
-                                : 'h-[2rem] w-[100px] text-white flex items-center justify-center m-2 rounded-xl ' +
-                                'bg-gray-600/60 hover:cursor-pointer hover:scale-110 duration-200'}>{genre}
+                            className={
+                                currGenre === genre
+                                    ? 'h-[2rem] w-[100px] text-white flex items-center justify-center m-2 rounded-xl bg-blue-500/80'
+                                    : 'h-[2rem] w-[100px] text-white flex items-center justify-center m-2 rounded-xl bg-gray-600/60 hover:cursor-pointer hover:scale-110 duration-200'
+                            }>{genre}
                 </div>
             })}
-
         </div>
 
-        <div className='flex justify-center my-4'>
+        {/*Search Field*/}
+        <div className='flex justify-center my-4 mb-16'>
             <input type='text' placeholder='Search Movies or Keywords'
                    className='h-[3rem] w-[400px] px-6 bg-gray-200 outline-none rounded-[30px]'
                    onChange={handleSearch}
                    value={search}/>
         </div>
 
+        {/*Table Section*/}
         <div className='w-[85%] rounded-lg border border-gray-300 m-10'>
             <table className='w-full text-gray-500 text-center'>
                 <thead className='border-b-4 border-gray-300'>
@@ -101,8 +106,9 @@ function Watchlist({watchList, setWatchList, handleRemoveFromWatchList}) {
                             <td>{genreIDs[movieObj.genre_ids[0]]}</td>
                             <td onClick={() => handleRemoveFromWatchList(movieObj)}
                                 className='text-white place-items-center hover:cursor-pointer px-8 hover:scale-110 duration-100'>
-                                <div title='Remove from Watchlist' className='w-[6rem] p-2 rounded-xl text-center bg-red-600/90'>Remove</div>
-
+                                <div title='Remove from Watchlist'
+                                     className='w-[6rem] p-2 rounded-xl text-center bg-red-600/80'>Remove
+                                </div>
                             </td>
                         </tr>
                     )

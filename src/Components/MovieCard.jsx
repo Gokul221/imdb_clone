@@ -1,9 +1,8 @@
-function MovieCard({
-                       handleAddToWatchList,
-                       handleRemoveFromWatchList,
-                       movieObj,
-                       watchList
-                   }) {
+import {WatchListContext} from "./WatchListContext.jsx";
+import {useContext} from "react";
+
+function MovieCard({movieObj}) {
+    const {watchList, handleAddToWatchList, handleRemoveFromWatchList} = useContext(WatchListContext)
 
     function doesContain(movieObj) {
         for (let i = 0; i < watchList.length; i++) {
@@ -23,7 +22,7 @@ function MovieCard({
              }}
              onMouseEnter={(e) => {
                  const strip = e.currentTarget.querySelector('.name-strip');
-                 strip.classList.remove('opacity-0', 'invisible')
+                 strip.classList.remove('invisible')
                  strip.classList.add("opacity-100", "visible");
              }}
              onMouseLeave={(e) => {
@@ -33,11 +32,12 @@ function MovieCard({
              }}
         >
             <div title='Watch now in HD'
-                className="rounded-b-xl name-strip hover:cursor-pointer invisible absolute h-[42px] bottom-0 left-0 w-full bg-purple-700 text-white  text-center py-2 text-sm duration-200"
+                 className="rounded-b-xl name-strip hover:cursor-pointer invisible absolute h-[42px] bottom-0 left-0 w-full bg-purple-700 text-white  text-center py-2 text-sm duration-200"
             >
                 Watch Now
             </div>
-            {doesContain(movieObj) ?
+            {doesContain(movieObj)
+                ?
                 (<div title='Remove from Watchlist' onClick={() => (handleRemoveFromWatchList(movieObj))}
                       className='flex rounded-xl hover:cursor-pointer justify-center items-center bg-gray-600/50 h-9 w-9'>&#10060;</div>)
                 :

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow:
+Allow: /
+
+Sitemap: https://famous-fenglisu-c22ca9.netlify.app/sitemap.xml

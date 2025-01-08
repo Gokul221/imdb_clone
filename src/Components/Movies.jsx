@@ -1,16 +1,13 @@
-import MovieCard from "./MovieCard";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import MovieCard from "./MovieCard";
 import Pagination from "./Pagination.jsx";
 
-function Movies({handleAddToWatchList, handleRemoveFromWatchList, watchList}) {
-
+function Movies() {
     const [movies, setMovies] = useState([])
     const [pageNumber, setPageNumber] = useState(1)
     const apiKey = import.meta.env.VITE_API_KEY
     const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${pageNumber}`
-
-    // const streamingProvidersURL = `https://api.themoviedb.org/3/movie/${movieId}/watch/providers`
 
     function nextPage() {
         setPageNumber((prevPage) => prevPage + 1)
@@ -38,13 +35,7 @@ function Movies({handleAddToWatchList, handleRemoveFromWatchList, watchList}) {
             <div className="flex flex-row flex-wrap justify-around m-5">
                 {movies.map((movieObj) => {
                     return (
-                        <MovieCard key={movieObj.id} poster_path={movieObj.poster_path}
-                                   original_title={movieObj.original_title}
-                                   handleAddToWatchList={handleAddToWatchList}
-                                   handleRemoveFromWatchList={handleRemoveFromWatchList}
-                                   watchList={watchList}
-                                   movieObj={movieObj}
-                        />
+                        <MovieCard key={movieObj.id} movieObj={movieObj}/>
                     )
                 })}
             </div>

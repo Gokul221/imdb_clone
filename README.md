@@ -16,4 +16,4 @@ Built using Vite and deployed on Netlify -
 https://famous-fenglisu-c22ca9.netlify.app/ (Open in new tab - Cmd + click in mac, Ctrl + click in windows)
 <br>
 <br>
-!! NOTE - If you're using JIO as your network provider to access the site then the TMDB API will fail to fetch the necessary data as<br> <ins>TMDB platform is banned in India by JIO</ins>. Works fine on Airtel or Wi-fi.
+!! NOTE - If you're using JIO as your network provider to access the site then the TMDB API will fail to fetch the necessary data as <ins>TMDB platform is banned in India by JIO</ins>. Works fine on Airtel or Wi-fi.
